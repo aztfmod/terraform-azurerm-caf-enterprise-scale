@@ -24,8 +24,8 @@ locals {
   client_config = var.client_config == {} ? {
     client_id               = data.azurerm_client_config.current.client_id
     landingzone_key         = var.current_landingzone_key
-    logged_aad_app_objectId = local.object_id
-    logged_user_objectId    = local.object_id
+    logged_aad_app_objectId = var.logged_aad_app_objectId
+    logged_user_objectId    = var.logged_user_objectId
     object_id               = local.object_id
     subscription_id         = data.azurerm_client_config.current.subscription_id
     tenant_id               = data.azurerm_client_config.current.tenant_id

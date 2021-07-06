@@ -3,10 +3,10 @@
 # Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
 #-------------------------------------------------------------------------------------------------------------
 
-  version: '3.7'
+  version: '3.8'
   services:
     rover:
-      image: aztfmod/rover:1.0.1-2106.3012
+      image: beisitdevacrrover00.azurecr.io/rover:1.0.1-2107.011354
       user: vscode
 
       labels:

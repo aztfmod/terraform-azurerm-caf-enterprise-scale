@@ -5,7 +5,6 @@ set -e
 user_type=$(az account show --query user.type -o tsv)
 
 if [ "${user_type}" = "user" ]; then
-
     az ad app permission admin-consent --id ${applicationId}
 else
     resourceId=$(az ad sp show --id "${resourceAppId}" --query "objectId" -o tsv)

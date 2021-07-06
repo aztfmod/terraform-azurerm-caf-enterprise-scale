@@ -124,7 +124,8 @@ locals {
                     object_id_resource_type = object_id_key
                     object_id_key_resource  = object_id_key_resource #   "object_id_key_resource" = "aks_admins"
                     lz_key                  = try(object_resources.lz_key, null)
-                  }
+                  } if(object_id_key != "logged_in") || (object_id_key_resource == "user" && local.client_config.logged_user_objectId != null)
+                  || (object_id_key_resource == "app" && local.client_config.logged_aad_app_objectId != null)
                 ]
               ]
             ]
