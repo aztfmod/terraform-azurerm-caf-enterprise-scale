@@ -139,6 +139,29 @@ resource "azurerm_application_gateway" "agw" {
       }
     }
   }
+  dynamic "probe" {
+    for_each = try(local.probes)
+
+    content {
+      name                                      = probe.value.name
+      host                                      = probe.value.host
+      interval                                  = probe.value.interval
+      protocol                                  = probe.value.protocol
+      path                                      = probe.value.path
+      timeout                                   = probe.value.timeout
+      unhealthy_threshold                       = probe.value.unhealthy_threshold
+      port                                      = try(probe.value.port,null)
+      pick_host_name_from_backend_http_settings = try(probe.value.pick_host_name_from_backend_http_settings, false)
+      minimum_servers                           = try(probe.value.minimum_servers, 0)
+      dynamic "match" {
+        for_each = try(probe.value.match, null) == null ? [] : [1]
+        content {
+          body        = try(probe.value.match.body,null)
+          status_code = try(probe.value.match.status_code,null)
+        }
+      }
+    }
+  }
 
   dynamic "backend_http_settings" {
     for_each = local.backend_http_settings
@@ -151,6 +174,8 @@ resource "azurerm_application_gateway" "agw" {
       request_timeout                     = try(backend_http_settings.value.request_timeout, 30)
       pick_host_name_from_backend_address = try(backend_http_settings.value.pick_host_name_from_backend_address, false)
       trusted_root_certificate_names      = try(backend_http_settings.value.trusted_root_certificate_names, null)
+      host_name                           = try(backend_http_settings.value.host_name, null)
+      probe_name                          = try(local.probes[format("%s-%s",backend_http_settings.key, backend_http_settings.value.probe_key)].name, null)
     }
   }
 

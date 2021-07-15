@@ -17,7 +17,7 @@ This module can be used inside [Cloud Adoption Framework Landing zones](https://
 ```terraform
 module "caf" {
   source  = "aztfmod/caf/azurerm"
-  version = "~>5.1.0"
+  version = "~>5.4.0"
   # insert the 7 required variables here
 }
 ```
@@ -32,6 +32,8 @@ For a complete set of examples you can review the [full library here](./examples
 ## Community
 
 Feel free to open an issue for feature or bug, or to submit a PR, [please review the module contribution and conventions guidelines](./documentation/conventions.md)
+
+[Please check out the WIKI for coding standards, common patterns and PR checklist.](https://github.com/aztfmod/terraform-azurerm-caf/wiki)
 
 In case you have any question, you can reach out to tf-landingzones at microsoft dot com.
 

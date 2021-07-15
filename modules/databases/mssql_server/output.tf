@@ -29,11 +29,3 @@ output "resource_group_name" {
 output "location" {
   value = var.location
 }
-
-output "administrator_login" {
-  value = var.settings.administrator_login
-}
-
-output "administrator_login_password" {
-  value = try(var.settings.administrator_login_password, random_password.sql_admin.0.result)
-}

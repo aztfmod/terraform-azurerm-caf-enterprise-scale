@@ -45,3 +45,29 @@ resource "null_resource" "destroy_sqlmi" {
   }
 
 }
+
+# Generate sql server random admin password if not provided in the attribute administrator_login_password
+resource "random_password" "sqlmi_admin" {
+  count = try(var.settings.administratorLoginPassword, null) == null ? 1 : 0
+
+  length           = 128
+  special          = true
+  upper            = true
+  number           = true
+  override_special = "$#%"
+}
+
+# Store the generated password into keyvault
+resource "azurerm_key_vault_secret" "sqlmi_admin_password" {
+  count = try(var.settings.administratorLoginPassword, null) == null ? 1 : 0
+
+  name         = format("%s-password", azurecaf_name.mssqlmi.result)
+  value        = random_password.sqlmi_admin.0.result
+  key_vault_id = var.keyvault_id
+
+  lifecycle {
+    ignore_changes = [
+      value
+    ]
+  }
+}

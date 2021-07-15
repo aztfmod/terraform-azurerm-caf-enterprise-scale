@@ -35,7 +35,8 @@ vnets = {
           actions = [
             "Microsoft.Network/virtualNetworks/subnets/join/action",
             "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
-          "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action"]
+            "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action"
+          ]
         }
       }
     }
@@ -57,7 +58,7 @@ mssql_managed_instances = {
       name = "GP_Gen5"
     }
     administratorLogin         = "adminuser"
-    administratorLoginPassword = "@dm1nu53r@30102020"
+    # administratorLoginPassword = "@dm1nu53r@30102020"
 
     //networking
     networking = {

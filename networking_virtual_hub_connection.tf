@@ -5,7 +5,7 @@
 #
 #
 
-output "virtual_hub_connection" {
+output "virtual_hub_connections" {
   value = azurerm_virtual_hub_connection.vhub_connection
 }
 

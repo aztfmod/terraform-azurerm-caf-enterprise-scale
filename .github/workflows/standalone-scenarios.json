@@ -92,6 +92,7 @@
     "networking/load_balancers/102-internal-load-balancer",
     "networking/load_balancers/103-load-balancer-nic-association",
     "networking/load_balancers/104-load-balancer-diagnostics",
+    "networking/nat_gateways/100-nat_gateways-with_public_ip",
     "networking/private_dns/100-private-dns-vnet-links",
     "networking/private_links/endpoints/centralized",
     "networking/virtual_network_gateway/100-expressroute-gateway",

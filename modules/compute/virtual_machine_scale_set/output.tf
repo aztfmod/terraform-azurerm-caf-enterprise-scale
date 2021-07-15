@@ -27,6 +27,7 @@ output "ssh_keys" {
   value = local.create_sshkeys ? {
     keyvault_id              = local.keyvault.id
     ssh_private_key_pem      = azurerm_key_vault_secret.ssh_private_key[local.os_type].name
-    ssh_private_key_open_ssh = azurerm_key_vault_secret.ssh_public_key_openssh[local.os_type].name
+    ssh_public_key_open_ssh = azurerm_key_vault_secret.ssh_public_key_openssh[local.os_type].name
+    ssh_private_key_open_ssh = azurerm_key_vault_secret.ssh_public_key_openssh[local.os_type].name #for backard compat, wrong name, will be removed in future version.
   } : null
 }

@@ -21,6 +21,7 @@ module "mssql_servers" {
   resource_groups     = try(each.value.private_endpoints, {}) == {} ? null : local.resource_groups
   base_tags           = try(local.global_settings.inherit_tags, false) ? local.resource_groups[each.value.resource_group_key].tags : {}
   private_dns         = local.combined_objects_private_dns
+  keyvault_id         = try(each.value.administrator_login_password, null) == null ? module.keyvaults[each.value.keyvault_key].id : null
 }
 
 data "azurerm_storage_account" "mssql_auditing" {

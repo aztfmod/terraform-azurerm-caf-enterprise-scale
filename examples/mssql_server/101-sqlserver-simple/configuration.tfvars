@@ -19,6 +19,7 @@ mssql_servers = {
     region              = "region1"
     resource_group_key  = "sql_region1"
     administrator_login = "sqladmin"
+    keyvault_key        = "sql_rg1"
   }
 }
 
@@ -35,21 +36,3 @@ keyvaults = {
     }
   }
 }
-
-#need to place dynamic secrets module outside caf module to pass the objects
-# dynamic_keyvault_secrets = {
-#   sql_rg1 = {
-#     sql_username = {
-#       output_key    = "mssql_servers"
-#       resource_key  = "sql_rg1"
-#       attribute_key = "administrator_login"
-#       secret_name   = "sql-rg1-username"
-#     }
-#     sql_password = {
-#       output_key    = "mssql_servers"
-#       resource_key  = "sql_rg1"
-#       attribute_key = "administrator_login_password"
-#       secret_name   = "sql-rg1-password"
-#     }
-#   }
-# }

@@ -57,6 +57,43 @@ application_gateways = {
         protocol = "Https"
       }
     }
+
+    waf_configuration = {
+      enabled = true
+      firewall_mode = "Prevention"  # or Detection
+      rule_set_type = "OWASP"       # OWASP
+      rule_set_version = "3.1"      # OWASP(2.2.9, 3.0, 3.1, 3.2)
+      file_upload_limit_mb = 100
+      request_body_check      = true
+      max_request_body_size_kb = 128
+
+      # Optional
+      disabled_rule_groups = {
+        general = {
+          rule_group_name = "General"
+          rules = ["200004"]
+        }
+        # Disable a spacific rule in the rule group
+        REQUEST-913-SCANNER-DETECTION = {
+          rule_group_name = "REQUEST-913-SCANNER-DETECTION"
+          rules = ["913102"]
+        }
+        # Disable all rule in the rule group
+        REQUEST-930-APPLICATION-ATTACK-LFI = {
+          rule_group_name = "REQUEST-930-APPLICATION-ATTACK-LFI"
+        }
+      }
+      
+      # Optional
+      exclusions = {
+        exc1 = {
+          match_variable = "RequestHeaderNames"
+          selector_match_operator = "Equals"      # StartsWith, EndsWith, Contains
+          selector = "SomeHeader"
+        }
+      }
+    }
+
   }
 }
 

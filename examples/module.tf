@@ -137,6 +137,7 @@ module "example" {
     ip_groups                                               = var.ip_groups
     load_balancers                                          = var.load_balancers
     local_network_gateways                                  = var.local_network_gateways
+    nat_gateways                                            = var.nat_gateways
     network_security_group_definition                       = var.network_security_group_definition
     network_watchers                                        = var.network_watchers
     private_dns                                             = var.private_dns

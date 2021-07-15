@@ -1,3 +1,7 @@
+#
+# Process membership for var.azuread_groups in members attribute
+#
+
 data "azuread_user" "upn" {
   for_each = toset(try(var.settings.members.user_principal_names, []))
 
@@ -26,15 +30,6 @@ module "azuread_service_principals" {
 
   group_object_id  = var.group_id
   member_object_id = var.azuread_service_principals[each.key].object_id
-}
-
-module "azuread_service_principals_membership" {
-  source   = "./membership"
-  for_each = try(var.settings.azuread_service_principals, {})
-
-  group_object_id            = var.group_id
-  azuread_service_principals = var.azuread_service_principals[try(each.value.lz_key, var.client_config.landingzone_key)]
-  members                    = each.value
 }
 
 module "object_id" {

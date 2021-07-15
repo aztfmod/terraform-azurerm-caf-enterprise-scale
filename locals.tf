@@ -202,6 +202,7 @@ locals {
     ip_groups                                               = try(var.networking.ip_groups, {})
     load_balancers                                          = try(var.networking.load_balancers, {})
     local_network_gateways                                  = try(var.networking.local_network_gateways, {})
+    nat_gateways                                            = try(var.networking.nat_gateways, {})
     network_security_group_definition                       = try(var.networking.network_security_group_definition, {})
     network_watchers                                        = try(var.networking.network_watchers, {})
     private_dns                                             = try(var.networking.private_dns, {})

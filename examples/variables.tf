@@ -552,3 +552,6 @@ variable "storage_account_queues" {
 variable "storage_account_blobs" {
   default = {}
 }
+variable "nat_gateways" {
+  default = {}
+}

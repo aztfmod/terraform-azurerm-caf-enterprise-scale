@@ -38,6 +38,7 @@ mssql_servers = {
     resource_group_key            = "rg1"
     version                       = "12.0"
     administrator_login           = "sqladmin"
+    keyvault_key                  = "kv1"
     connection_policy             = "Default"
     public_network_access_enabled = false
     minimum_tls_version           = "1.2"
@@ -79,6 +80,20 @@ diagnostics_definition = {
         #["Category name",  "Diagnostics Enabled(true/false)", "Retention Enabled(true/false)", Retention_period]
         ["Basic", true, false, 7],
       ]
+    }
+  }
+}
+
+keyvaults = {
+  kv1 = {
+    name               = "examplekv"
+    resource_group_key = "rg1"
+    sku_name           = "standard"
+
+    creation_policies = {
+      logged_in_user = {
+        secret_permissions = ["Set", "Get", "List", "Delete", "Purge"]
+      }
     }
   }
 }
